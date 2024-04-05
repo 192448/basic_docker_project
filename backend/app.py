@@ -2,10 +2,13 @@
 from flask import Flask, jsonify, request
 from sqlalchemy import text, create_engine
 from sqlalchemy.orm import Session
+from flask_cors import CORS
 import psycopg2
 
 # program variables -------->
 app = Flask(__name__)
+# enable CORS
+CORS(app)
 
 # db credentials -------->
 user = 'admin'
@@ -20,7 +23,7 @@ init = 'CREATE TABLE IF NOT EXISTS packages (id SERIAL PRIMARY KEY, status VARCH
 list = 'SELECT * FROM packages;'
 get = 'SELECT * FROM packages WHERE id = '
 drop = 'DROP TABLE packages;'
-insert = "INSERT INTO packages (status) VALUES ('registrado')"
+insert = "INSERT INTO packages (status) VALUES ('registered')"
 
 # methods -------->
 # make sure the db tables are created

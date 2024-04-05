@@ -1,5 +1,5 @@
 services:
-  web:
+  backend:
     build: ./backend
     volumes:
       - ./backend/:/usr/src/app/
@@ -7,6 +7,12 @@ services:
       - 5000:5000
     depends_on:
       - db
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
   db:
     image: postgres:16
     volumes:
